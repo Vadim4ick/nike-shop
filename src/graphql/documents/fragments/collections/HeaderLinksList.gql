@@ -1,0 +1,7 @@
+fragment HeaderLinksListFragment on LinkList {
+  title
+
+  links {
+    ...LinkListFragment
+  }
+}

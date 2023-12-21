@@ -1,0 +1,6 @@
+fragment PreHeaderAttributesFragment on PreHeader {
+  title
+  links {
+    ...LinkFragment
+  }
+}

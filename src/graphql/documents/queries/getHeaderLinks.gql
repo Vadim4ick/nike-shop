@@ -1,0 +1,9 @@
+query GetHeaderLinkList($locale: I18NLocaleCode) {
+  linkLists(locale: $locale) {
+    data {
+      attributes {
+        ...HeaderLinksListFragment
+      }
+    }
+  }
+}

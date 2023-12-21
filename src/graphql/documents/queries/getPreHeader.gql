@@ -1,0 +1,9 @@
+query GetPreHeader($locale: I18NLocaleCode) {
+  preHeader(locale: $locale) {
+    data {
+      attributes {
+        ...PreHeaderAttributesFragment
+      }
+    }
+  }
+}

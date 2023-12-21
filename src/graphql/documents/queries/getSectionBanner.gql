@@ -1,0 +1,9 @@
+query GetSectionBanner($locale: I18NLocaleCode) {
+  sectionBanner(locale: $locale) {
+    data {
+      attributes {
+        ...SectionBannerAttributesFragment
+      }
+    }
+  }
+}

@@ -1,7 +1,21 @@
-import { useTranslations } from "next-intl";
+import { Banner } from "@/components/sections/Banner/Banner";
+import { gql } from "@/graphql/client";
+import { Languages } from "@/shared/i18n/types";
 
-export default function Index() {
-  const t = useTranslations("Index");
+export default async function Index({
+  params,
+}: {
+  params: { locale: Languages };
+}) {
+  const { sectionBanner } = await gql.GetSectionBanner({
+    locale: params.locale,
+  });
 
-  return <h1>{t("title")}</h1>;
+  return (
+    <>
+      {sectionBanner && (
+        <Banner sectionBanner={sectionBanner.data.attributes} />
+      )}
+    </>
+  );
 }
