@@ -1,9 +1,14 @@
-import { languages } from "@/shared/i18n/types";
-import Link from "next/link";
+"use client";
+
+import { Languages } from "@/shared/i18n/types";
+import { Select } from "@/shared/ui";
+import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 
-const ToggleSwither = () => {
+const ToggleSwither = ({ localeCodes }: { localeCodes: Languages[] }) => {
   const pathName = usePathname();
+
+  const currentLocale = useLocale();
 
   const redirectedPathName = (locale: string) => {
     if (!pathName) return "/";
@@ -14,21 +19,19 @@ const ToggleSwither = () => {
     return segments.join("/");
   };
 
+  const handleChange = (selectedLocale: string) => {
+    const newPath = redirectedPathName(selectedLocale);
+    window.location.href = newPath;
+  };
+
   return (
-    <ul className="flex gap-x-3">
-      {languages.map((locale) => {
-        return (
-          <li key={locale}>
-            <Link
-              href={redirectedPathName(locale)}
-              className="rounded-md border bg-black px-3 py-2 text-black-100"
-            >
-              {locale}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="pl-6">
+      <Select
+        onChange={handleChange}
+        items={localeCodes}
+        defaultValue={currentLocale}
+      />
+    </div>
   );
 };
 

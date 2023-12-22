@@ -1,4 +1,5 @@
 import { Banner } from "@/components/sections/Banner/Banner";
+import { DiscountBanner } from "@/components/sections/DiscountBanner/DiscountBanner";
 import { gql } from "@/graphql/client";
 import { Languages } from "@/shared/i18n/types";
 
@@ -11,9 +12,17 @@ export default async function Index({
     locale: params.locale,
   });
 
+  const { sectionDiscount } = await gql.GetSectionDiscount({
+    locale: params.locale,
+  });
+
   return (
     <>
-      {sectionBanner && (
+      {sectionDiscount.data && (
+        <DiscountBanner items={sectionDiscount.data.attributes.items} />
+      )}
+
+      {sectionBanner.data && (
         <Banner sectionBanner={sectionBanner.data.attributes} />
       )}
     </>

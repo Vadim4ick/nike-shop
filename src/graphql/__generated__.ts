@@ -74,6 +74,27 @@ export type ComponentElementsLinkItemInput = {
   readonly title: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentUiDiscountCard = {
+  readonly __typename?: 'ComponentUiDiscountCard';
+  readonly description2: Scalars['String']['output'];
+  readonly id: Scalars['ID']['output'];
+  readonly title: Scalars['String']['output'];
+};
+
+export type ComponentUiDiscountCardFiltersInput = {
+  readonly and: InputMaybe<ReadonlyArray<InputMaybe<ComponentUiDiscountCardFiltersInput>>>;
+  readonly description2: InputMaybe<StringFilterInput>;
+  readonly not: InputMaybe<ComponentUiDiscountCardFiltersInput>;
+  readonly or: InputMaybe<ReadonlyArray<InputMaybe<ComponentUiDiscountCardFiltersInput>>>;
+  readonly title: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentUiDiscountCardInput = {
+  readonly description2: InputMaybe<Scalars['String']['input']>;
+  readonly id: InputMaybe<Scalars['ID']['input']>;
+  readonly title: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentUiLink = {
   readonly __typename?: 'ComponentUiLink';
   readonly href: Scalars['String']['output'];
@@ -257,7 +278,7 @@ export type FloatFilterInput = {
   readonly startsWith: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentElementsLinkItem | ComponentUiLink | ContentReleasesRelease | ContentReleasesReleaseAction | I18NLocale | LinkList | PreHeader | SectionBanner | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentElementsLinkItem | ComponentUiDiscountCard | ComponentUiLink | ContentReleasesRelease | ContentReleasesReleaseAction | I18NLocale | LinkList | PreHeader | SectionBanner | SectionDiscount | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   readonly __typename?: 'I18NLocale';
@@ -448,6 +469,7 @@ export type Mutation = {
   readonly createLinkListLocalization: Maybe<LinkListEntityResponse>;
   readonly createPreHeaderLocalization: Maybe<PreHeaderEntityResponse>;
   readonly createSectionBannerLocalization: Maybe<SectionBannerEntityResponse>;
+  readonly createSectionDiscountLocalization: Maybe<SectionDiscountEntityResponse>;
   readonly createUploadFile: Maybe<UploadFileEntityResponse>;
   readonly createUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -459,6 +481,7 @@ export type Mutation = {
   readonly deleteLinkList: Maybe<LinkListEntityResponse>;
   readonly deletePreHeader: Maybe<PreHeaderEntityResponse>;
   readonly deleteSectionBanner: Maybe<SectionBannerEntityResponse>;
+  readonly deleteSectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly deleteUploadFile: Maybe<UploadFileEntityResponse>;
   readonly deleteUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -482,6 +505,7 @@ export type Mutation = {
   readonly updateLinkList: Maybe<LinkListEntityResponse>;
   readonly updatePreHeader: Maybe<PreHeaderEntityResponse>;
   readonly updateSectionBanner: Maybe<SectionBannerEntityResponse>;
+  readonly updateSectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly updateUploadFile: Maybe<UploadFileEntityResponse>;
   readonly updateUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -536,6 +560,13 @@ export type MutationCreateSectionBannerLocalizationArgs = {
 };
 
 
+export type MutationCreateSectionDiscountLocalizationArgs = {
+  data: InputMaybe<SectionDiscountInput>;
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
@@ -578,6 +609,11 @@ export type MutationDeletePreHeaderArgs = {
 
 
 export type MutationDeleteSectionBannerArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteSectionDiscountArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -675,6 +711,12 @@ export type MutationUpdatePreHeaderArgs = {
 
 export type MutationUpdateSectionBannerArgs = {
   data: SectionBannerInput;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationUpdateSectionDiscountArgs = {
+  data: SectionDiscountInput;
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -789,6 +831,7 @@ export type Query = {
   readonly me: Maybe<UsersPermissionsMe>;
   readonly preHeader: Maybe<PreHeaderEntityResponse>;
   readonly sectionBanner: Maybe<SectionBannerEntityResponse>;
+  readonly sectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly uploadFile: Maybe<UploadFileEntityResponse>;
   readonly uploadFiles: Maybe<UploadFileEntityResponseCollection>;
   readonly uploadFolder: Maybe<UploadFolderEntityResponse>;
@@ -858,6 +901,12 @@ export type QueryPreHeaderArgs = {
 
 
 export type QuerySectionBannerArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QuerySectionDiscountArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationState?: InputMaybe<PublicationState>;
 };
@@ -964,6 +1013,49 @@ export type SectionBannerInput = {
 export type SectionBannerRelationResponseCollection = {
   readonly __typename?: 'SectionBannerRelationResponseCollection';
   readonly data: ReadonlyArray<SectionBannerEntity>;
+};
+
+export type SectionDiscount = {
+  readonly __typename?: 'SectionDiscount';
+  readonly createdAt: Maybe<Scalars['DateTime']['output']>;
+  readonly items: Maybe<ReadonlyArray<Maybe<ComponentUiDiscountCard>>>;
+  readonly locale: Maybe<Scalars['String']['output']>;
+  readonly localizations: Maybe<SectionDiscountRelationResponseCollection>;
+  readonly publishedAt: Maybe<Scalars['DateTime']['output']>;
+  readonly updatedAt: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type SectionDiscountItemsArgs = {
+  filters: InputMaybe<ComponentUiDiscountCardFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type SectionDiscountLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type SectionDiscountEntity = {
+  readonly __typename?: 'SectionDiscountEntity';
+  readonly attributes: Maybe<SectionDiscount>;
+  readonly id: Maybe<Scalars['ID']['output']>;
+};
+
+export type SectionDiscountEntityResponse = {
+  readonly __typename?: 'SectionDiscountEntityResponse';
+  readonly data: Maybe<SectionDiscountEntity>;
+};
+
+export type SectionDiscountInput = {
+  readonly items: InputMaybe<ReadonlyArray<InputMaybe<ComponentUiDiscountCardInput>>>;
+  readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type SectionDiscountRelationResponseCollection = {
+  readonly __typename?: 'SectionDiscountRelationResponseCollection';
+  readonly data: ReadonlyArray<SectionDiscountEntity>;
 };
 
 export type StringFilterInput = {
@@ -1374,6 +1466,8 @@ export type VideoFragmentFragment = { readonly __typename?: 'UploadFileEntityRes
 
 export type PreHeaderAttributesFragmentFragment = { readonly __typename?: 'PreHeader', readonly title: string, readonly links: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> };
 
+export type DiscountAttributesFragmentFragment = { readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string };
+
 export type SectionBannerAttributesFragmentFragment = { readonly __typename?: 'SectionBanner', readonly sectionTitle: string, readonly preSectionTitle: string, readonly subSectionTitle: string, readonly video: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly alternativeText: string, readonly caption: string, readonly width: number, readonly height: number, readonly formats: any, readonly hash: string, readonly ext: string, readonly mime: string, readonly size: number, readonly url: string, readonly previewUrl: string, readonly provider: string, readonly provider_metadata: any } } }, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> };
 
 export type GetHeaderLinkListQueryVariables = Exact<{
@@ -1382,6 +1476,11 @@ export type GetHeaderLinkListQueryVariables = Exact<{
 
 
 export type GetHeaderLinkListQuery = { readonly __typename?: 'Query', readonly linkLists: { readonly __typename?: 'LinkListEntityResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'LinkListEntity', readonly attributes: { readonly __typename?: 'LinkList', readonly title: string, readonly links: ReadonlyArray<{ readonly __typename?: 'ComponentElementsLinkItem', readonly id: string, readonly title: string, readonly link: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> }> } }> } };
+
+export type GetLocaleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLocaleQuery = { readonly __typename?: 'Query', readonly i18NLocales: { readonly __typename?: 'I18NLocaleEntityResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'I18NLocaleEntity', readonly id: string, readonly attributes: { readonly __typename?: 'I18NLocale', readonly name: string, readonly code: string } }> } };
 
 export type GetPreHeaderQueryVariables = Exact<{
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1396,6 +1495,13 @@ export type GetSectionBannerQueryVariables = Exact<{
 
 
 export type GetSectionBannerQuery = { readonly __typename?: 'Query', readonly sectionBanner: { readonly __typename?: 'SectionBannerEntityResponse', readonly data: { readonly __typename?: 'SectionBannerEntity', readonly attributes: { readonly __typename?: 'SectionBanner', readonly sectionTitle: string, readonly preSectionTitle: string, readonly subSectionTitle: string, readonly video: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly alternativeText: string, readonly caption: string, readonly width: number, readonly height: number, readonly formats: any, readonly hash: string, readonly ext: string, readonly mime: string, readonly size: number, readonly url: string, readonly previewUrl: string, readonly provider: string, readonly provider_metadata: any } } }, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> } } } };
+
+export type GetSectionDiscountQueryVariables = Exact<{
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetSectionDiscountQuery = { readonly __typename?: 'Query', readonly sectionDiscount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } } };
 
 export const LinkFragmentFragmentDoc = gql`
     fragment LinkFragment on ComponentUiLink {
@@ -1429,6 +1535,13 @@ export const PreHeaderAttributesFragmentFragmentDoc = gql`
   }
 }
     ${LinkFragmentFragmentDoc}`;
+export const DiscountAttributesFragmentFragmentDoc = gql`
+    fragment DiscountAttributesFragment on ComponentUiDiscountCard {
+  id
+  title
+  description2
+}
+    `;
 export const VideoFragmentFragmentDoc = gql`
     fragment VideoFragment on UploadFileEntityResponse {
   data {
@@ -1476,6 +1589,19 @@ export const GetHeaderLinkListDocument = gql`
   }
 }
     ${HeaderLinksListFragmentFragmentDoc}`;
+export const GetLocaleDocument = gql`
+    query GetLocale {
+  i18NLocales {
+    data {
+      id
+      attributes {
+        name
+        code
+      }
+    }
+  }
+}
+    `;
 export const GetPreHeaderDocument = gql`
     query GetPreHeader($locale: I18NLocaleCode) {
   preHeader(locale: $locale) {
@@ -1498,6 +1624,19 @@ export const GetSectionBannerDocument = gql`
   }
 }
     ${SectionBannerAttributesFragmentFragmentDoc}`;
+export const GetSectionDiscountDocument = gql`
+    query GetSectionDiscount($locale: I18NLocaleCode) {
+  sectionDiscount(locale: $locale) {
+    data {
+      attributes {
+        items {
+          ...DiscountAttributesFragment
+        }
+      }
+    }
+  }
+}
+    ${DiscountAttributesFragmentFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1509,11 +1648,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     GetHeaderLinkList(variables?: GetHeaderLinkListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetHeaderLinkListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetHeaderLinkListQuery>(GetHeaderLinkListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetHeaderLinkList', 'query', variables);
     },
+    GetLocale(variables?: GetLocaleQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetLocaleQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetLocaleQuery>(GetLocaleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetLocale', 'query', variables);
+    },
     GetPreHeader(variables?: GetPreHeaderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetPreHeaderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPreHeaderQuery>(GetPreHeaderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPreHeader', 'query', variables);
     },
     GetSectionBanner(variables?: GetSectionBannerQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSectionBannerQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSectionBannerQuery>(GetSectionBannerDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSectionBanner', 'query', variables);
+    },
+    GetSectionDiscount(variables?: GetSectionDiscountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSectionDiscountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSectionDiscountQuery>(GetSectionDiscountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSectionDiscount', 'query', variables);
     }
   };
 }

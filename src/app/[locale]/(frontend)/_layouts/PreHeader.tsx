@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -7,11 +5,14 @@ import { ConverseIcon, JordanIcon } from "@/ui/icons";
 import { Typography } from "@/shared/ui";
 import { GetPreHeaderQuery } from "@/graphql/client";
 import { ToggleSwither } from "@/components/toggleSwither/ToggleSwither";
+import { Languages } from "@/shared/i18n/types";
 
 export const PreHeader = ({
   preHeader,
+  localeCodes,
 }: {
   preHeader: GetPreHeaderQuery["preHeader"]["data"];
+  localeCodes: Languages[];
 }) => {
   return (
     <div className="h-max-[60px] flex items-center justify-between bg-gray-100 px-[36px] py-[10px]">
@@ -28,8 +29,6 @@ export const PreHeader = ({
         </li>
       </ul>
       <div className="flex items-center justify-center">
-        <ToggleSwither />
-
         {preHeader.attributes.links.map((route, i) => (
           <React.Fragment key={route.id}>
             <Link className="mx-[8px] px-[8px] py-[4px]" href={route.href}>
@@ -41,6 +40,8 @@ export const PreHeader = ({
             </Typography>
           </React.Fragment>
         ))}
+
+        <ToggleSwither localeCodes={localeCodes} />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import { Header } from "./_layouts/Header";
 import { gql } from "@/graphql/client";
 
 import "@/shared/assets/styles/index.css";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,10 +33,18 @@ export default async function RootLayout({
     locale: params.locale,
   });
 
+  const { i18NLocales } = await gql.GetLocale();
+
+  const localeCodes = i18NLocales.data.map(
+    (el) => el.attributes.code
+  ) as Languages[];
+
   return (
     <html lang={params.locale}>
       <body>
-        {preHeader && <PreHeader preHeader={preHeader.data} />}
+        {preHeader && (
+          <PreHeader preHeader={preHeader.data} localeCodes={localeCodes} />
+        )}
         {linkLists && <Header linkLists={linkLists.data} />}
 
         <main>{children}</main>

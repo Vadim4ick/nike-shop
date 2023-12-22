@@ -3,7 +3,6 @@ import { languages } from "./shared/i18n/types";
 
 export default createMiddleware({
   locales: languages,
-
   defaultLocale: "en",
 });
 

@@ -4,11 +4,9 @@ import { Typography } from "@/shared/ui";
 import { Button } from "@/shared/ui/Button/Button";
 import Link from "next/link";
 
-export const Banner = ({
-  sectionBanner,
-}: {
-  sectionBanner: GetSectionBannerQuery["sectionBanner"]["data"]["attributes"];
-}) => (
+type TBanner = GetSectionBannerQuery["sectionBanner"]["data"]["attributes"];
+
+export const Banner = ({ sectionBanner }: { sectionBanner: TBanner }) => (
   <section className="my-[3rem]">
     <div className="flex flex-col items-center justify-center px-[2.25rem] text-center">
       {sectionBanner.sectionTitle && (

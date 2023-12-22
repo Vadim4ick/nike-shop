@@ -1,0 +1,11 @@
+query GetSectionDiscount($locale: I18NLocaleCode) {
+  sectionDiscount(locale: $locale) {
+    data {
+      attributes {
+        items {
+          ...DiscountAttributesFragment
+        }
+      }
+    }
+  }
+}
