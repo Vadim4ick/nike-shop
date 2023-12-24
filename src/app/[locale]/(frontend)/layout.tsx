@@ -10,6 +10,8 @@ import { Header } from "./_layouts/Header";
 import { gql } from "@/graphql/client";
 
 import "@/shared/assets/styles/index.css";
+import { SubFooter } from "./_layouts/SubFooter";
+import { Footer } from "./_layouts/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -33,6 +35,14 @@ export default async function RootLayout({
     locale: params.locale,
   });
 
+  const { layoutSubFooters } = await gql.GetLayoutSubFooters({
+    locale: params.locale,
+  });
+
+  const { layoutFooter } = await gql.GetLayoutFooter({
+    locale: params.locale,
+  });
+
   const { i18NLocales } = await gql.GetLocale();
 
   const localeCodes = i18NLocales.data.map(
@@ -42,12 +52,16 @@ export default async function RootLayout({
   return (
     <html lang={params.locale}>
       <body>
-        {preHeader && (
+        {preHeader.data && (
           <PreHeader preHeader={preHeader.data} localeCodes={localeCodes} />
         )}
-        {linkLists && <Header linkLists={linkLists.data} />}
+        {linkLists.data && <Header linkLists={linkLists.data} />}
 
         <main>{children}</main>
+
+        {layoutSubFooters.data && <SubFooter data={layoutSubFooters.data} />}
+
+        {layoutFooter && <Footer data={layoutFooter.data.attributes} />}
       </body>
     </html>
   );

@@ -1,0 +1,24 @@
+fragment ShoeFragment on ShoeRelationResponseCollection {
+  data {
+    id
+    attributes {
+      name
+      description
+      content
+      details
+      price
+      options {
+        id
+        medias {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        color
+      }
+      type
+    }
+  }
+}

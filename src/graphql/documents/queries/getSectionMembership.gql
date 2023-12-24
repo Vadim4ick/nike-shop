@@ -1,0 +1,9 @@
+query GetSectionMembership($locale: I18NLocaleCode) {
+  sectionMembership(locale: $locale) {
+    data {
+      attributes {
+        ...SectionMembershipAttributes
+      }
+    }
+  }
+}

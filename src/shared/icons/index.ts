@@ -1,3 +1,9 @@
+export { FacebookIcon } from "./FacebookIcon";
+export { InstagramIcon } from "./InstagramIcon";
+export { LocationIcon } from "./LocationIcon";
+export { TwitterIcon } from "./TwitterIcon";
+export { YoutubeIcon } from "./YoutubeIcon";
+export { ArrowIcon } from "./ArrowIcon";
 export { NikeIcon } from "./NikeIcon";
 export { LikeIcon } from "./LikeIcon";
 export { CartIcon } from "./CartIcon";

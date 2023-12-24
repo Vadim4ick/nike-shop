@@ -1,0 +1,13 @@
+query GetSectionTrend($locale: I18NLocaleCode) {
+  sectionTrend(locale: $locale) {
+    data {
+      attributes {
+        sectionTitle
+
+        shoes {
+          ...ShoeFragment
+        }
+      }
+    }
+  }
+}

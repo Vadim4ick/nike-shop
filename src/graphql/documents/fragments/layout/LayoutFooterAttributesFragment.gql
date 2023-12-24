@@ -1,0 +1,17 @@
+fragment LayoutFooterAttributesFragment on LayoutFooter {
+  title
+  mainLinks {
+    ...LinkListFragment
+  }
+  links {
+    ...LinkListFragment
+  }
+  supportLinks {
+    ...LinkListFragment
+  }
+  socilas {
+    ... on ComponentUiLink {
+      ...LinkFragment
+    }
+  }
+}

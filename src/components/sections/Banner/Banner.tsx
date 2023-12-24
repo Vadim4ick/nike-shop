@@ -1,7 +1,6 @@
 import { GetSectionBannerQuery } from "@/graphql/__generated__";
 import { getFileUrl } from "@/shared/helpers/getFileUrl";
-import { Typography } from "@/shared/ui";
-import { Button } from "@/shared/ui/Button/Button";
+import { Button, Typography } from "@/shared/ui";
 import Link from "next/link";
 
 type TBanner = GetSectionBannerQuery["sectionBanner"]["data"]["attributes"];

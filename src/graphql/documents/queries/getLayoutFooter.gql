@@ -1,0 +1,9 @@
+query GetLayoutFooter($locale: I18NLocaleCode) {
+  layoutFooter(locale: $locale) {
+    data {
+      attributes {
+        ...LayoutFooterAttributesFragment
+      }
+    }
+  }
+}

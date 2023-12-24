@@ -1,0 +1,6 @@
+fragment LayoutSubFootersAttribute on LayoutSubFooter {
+  title
+  links {
+    ...LinkFragment
+  }
+}

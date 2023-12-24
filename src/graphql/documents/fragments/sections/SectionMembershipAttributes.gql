@@ -1,0 +1,6 @@
+fragment SectionMembershipAttributes on SectionMembership {
+  title
+  card {
+    ...CardFragment
+  }
+}

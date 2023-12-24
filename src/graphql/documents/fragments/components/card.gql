@@ -1,0 +1,16 @@
+fragment CardFragment on ComponentUiFigure {
+  id
+  caption
+  linkButton {
+    ...LinkFragment
+  }
+  image {
+    data {
+      attributes {
+        name
+        url
+        previewUrl
+      }
+    }
+  }
+}
