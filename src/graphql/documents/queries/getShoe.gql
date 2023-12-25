@@ -1,0 +1,28 @@
+query GetShoe($id: ID, $locale: I18NLocaleCode) {
+  shoe(id: $id, locale: $locale) {
+    data {
+      attributes {
+        name
+        description
+        content
+        details
+        price
+        options {
+          id
+          medias {
+            data {
+              attributes {
+                url
+                name
+                caption
+                previewUrl
+              }
+            }
+          }
+          color
+        }
+        type
+      }
+    }
+  }
+}

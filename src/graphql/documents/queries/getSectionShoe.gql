@@ -1,0 +1,18 @@
+query GetSectionShoe($locale: I18NLocaleCode) {
+  sectionShoe(locale: $locale) {
+    data {
+      attributes {
+        title
+        addToBagButton {
+          ...LinkFragment
+        }
+        favoriteButton {
+          ...LinkFragment
+        }
+        detailsButton {
+          ...LinkFragment
+        }
+      }
+    }
+  }
+}

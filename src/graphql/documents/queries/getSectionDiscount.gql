@@ -1,5 +1,5 @@
-query GetSectionDiscount($locale: I18NLocaleCode) {
-  sectionDiscount(locale: $locale) {
+query GetSectionDiscount($id: ID, $locale: I18NLocaleCode) {
+  sectionDiscount(id: $id, locale: $locale) {
     data {
       attributes {
         items {

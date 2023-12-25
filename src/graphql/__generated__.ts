@@ -391,7 +391,7 @@ export type FloatFilterInput = {
   readonly startsWith: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentElementsLinkItem | ComponentEntityShoeOption | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentUiDiscountCard | ComponentUiFigure | ComponentUiLink | ContentReleasesRelease | ContentReleasesReleaseAction | I18NLocale | LayoutFooter | LayoutSubFooter | LinkList | PreHeader | SectionBanner | SectionDiscount | SectionMembership | SectionTrend | Shoe | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentElementsLinkItem | ComponentEntityShoeOption | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentUiDiscountCard | ComponentUiFigure | ComponentUiLink | ContentReleasesRelease | ContentReleasesReleaseAction | I18NLocale | LayoutFooter | LayoutSubFooter | LinkList | PageHome | PageShoe | PreHeader | SectionBanner | SectionDiscount | SectionMembership | SectionShoe | SectionTrend | Shoe | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   readonly __typename?: 'I18NLocale';
@@ -704,10 +704,14 @@ export type Mutation = {
   readonly createLayoutSubFooterLocalization: Maybe<LayoutSubFooterEntityResponse>;
   readonly createLinkList: Maybe<LinkListEntityResponse>;
   readonly createLinkListLocalization: Maybe<LinkListEntityResponse>;
+  readonly createPageHomeLocalization: Maybe<PageHomeEntityResponse>;
+  readonly createPageShoeLocalization: Maybe<PageShoeEntityResponse>;
   readonly createPreHeaderLocalization: Maybe<PreHeaderEntityResponse>;
   readonly createSectionBannerLocalization: Maybe<SectionBannerEntityResponse>;
+  readonly createSectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly createSectionDiscountLocalization: Maybe<SectionDiscountEntityResponse>;
   readonly createSectionMembershipLocalization: Maybe<SectionMembershipEntityResponse>;
+  readonly createSectionShoeLocalization: Maybe<SectionShoeEntityResponse>;
   readonly createSectionTrendLocalization: Maybe<SectionTrendEntityResponse>;
   readonly createShoe: Maybe<ShoeEntityResponse>;
   readonly createShoeLocalization: Maybe<ShoeEntityResponse>;
@@ -722,10 +726,13 @@ export type Mutation = {
   readonly deleteLayoutFooter: Maybe<LayoutFooterEntityResponse>;
   readonly deleteLayoutSubFooter: Maybe<LayoutSubFooterEntityResponse>;
   readonly deleteLinkList: Maybe<LinkListEntityResponse>;
+  readonly deletePageHome: Maybe<PageHomeEntityResponse>;
+  readonly deletePageShoe: Maybe<PageShoeEntityResponse>;
   readonly deletePreHeader: Maybe<PreHeaderEntityResponse>;
   readonly deleteSectionBanner: Maybe<SectionBannerEntityResponse>;
   readonly deleteSectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly deleteSectionMembership: Maybe<SectionMembershipEntityResponse>;
+  readonly deleteSectionShoe: Maybe<SectionShoeEntityResponse>;
   readonly deleteSectionTrend: Maybe<SectionTrendEntityResponse>;
   readonly deleteShoe: Maybe<ShoeEntityResponse>;
   readonly deleteUploadFile: Maybe<UploadFileEntityResponse>;
@@ -751,10 +758,13 @@ export type Mutation = {
   readonly updateLayoutFooter: Maybe<LayoutFooterEntityResponse>;
   readonly updateLayoutSubFooter: Maybe<LayoutSubFooterEntityResponse>;
   readonly updateLinkList: Maybe<LinkListEntityResponse>;
+  readonly updatePageHome: Maybe<PageHomeEntityResponse>;
+  readonly updatePageShoe: Maybe<PageShoeEntityResponse>;
   readonly updatePreHeader: Maybe<PreHeaderEntityResponse>;
   readonly updateSectionBanner: Maybe<SectionBannerEntityResponse>;
   readonly updateSectionDiscount: Maybe<SectionDiscountEntityResponse>;
   readonly updateSectionMembership: Maybe<SectionMembershipEntityResponse>;
+  readonly updateSectionShoe: Maybe<SectionShoeEntityResponse>;
   readonly updateSectionTrend: Maybe<SectionTrendEntityResponse>;
   readonly updateShoe: Maybe<ShoeEntityResponse>;
   readonly updateUploadFile: Maybe<UploadFileEntityResponse>;
@@ -817,6 +827,20 @@ export type MutationCreateLinkListLocalizationArgs = {
 };
 
 
+export type MutationCreatePageHomeLocalizationArgs = {
+  data: InputMaybe<PageHomeInput>;
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationCreatePageShoeLocalizationArgs = {
+  data: InputMaybe<PageShoeInput>;
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
 export type MutationCreatePreHeaderLocalizationArgs = {
   data: InputMaybe<PreHeaderInput>;
   id: InputMaybe<Scalars['ID']['input']>;
@@ -831,6 +855,12 @@ export type MutationCreateSectionBannerLocalizationArgs = {
 };
 
 
+export type MutationCreateSectionDiscountArgs = {
+  data: SectionDiscountInput;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
 export type MutationCreateSectionDiscountLocalizationArgs = {
   data: InputMaybe<SectionDiscountInput>;
   id: InputMaybe<Scalars['ID']['input']>;
@@ -840,6 +870,13 @@ export type MutationCreateSectionDiscountLocalizationArgs = {
 
 export type MutationCreateSectionMembershipLocalizationArgs = {
   data: InputMaybe<SectionMembershipInput>;
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationCreateSectionShoeLocalizationArgs = {
+  data: InputMaybe<SectionShoeInput>;
   id: InputMaybe<Scalars['ID']['input']>;
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -912,6 +949,16 @@ export type MutationDeleteLinkListArgs = {
 };
 
 
+export type MutationDeletePageHomeArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeletePageShoeArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
 export type MutationDeletePreHeaderArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -923,11 +970,17 @@ export type MutationDeleteSectionBannerArgs = {
 
 
 export type MutationDeleteSectionDiscountArgs = {
+  id: Scalars['ID']['input'];
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
 export type MutationDeleteSectionMembershipArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteSectionShoeArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1041,6 +1094,18 @@ export type MutationUpdateLinkListArgs = {
 };
 
 
+export type MutationUpdatePageHomeArgs = {
+  data: PageHomeInput;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationUpdatePageShoeArgs = {
+  data: PageShoeInput;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
 export type MutationUpdatePreHeaderArgs = {
   data: PreHeaderInput;
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1055,12 +1120,19 @@ export type MutationUpdateSectionBannerArgs = {
 
 export type MutationUpdateSectionDiscountArgs = {
   data: SectionDiscountInput;
+  id: Scalars['ID']['input'];
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
 export type MutationUpdateSectionMembershipArgs = {
   data: SectionMembershipInput;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationUpdateSectionShoeArgs = {
+  data: SectionShoeInput;
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1108,6 +1180,78 @@ export type MutationUploadArgs = {
   info: InputMaybe<FileInfoInput>;
   ref: InputMaybe<Scalars['String']['input']>;
   refId: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type PageHome = {
+  readonly __typename?: 'PageHome';
+  readonly createdAt: Maybe<Scalars['DateTime']['output']>;
+  readonly locale: Maybe<Scalars['String']['output']>;
+  readonly localizations: Maybe<PageHomeRelationResponseCollection>;
+  readonly publishedAt: Maybe<Scalars['DateTime']['output']>;
+  readonly section_discount: Maybe<SectionDiscountEntityResponse>;
+  readonly updatedAt: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PageHomeLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type PageHomeEntity = {
+  readonly __typename?: 'PageHomeEntity';
+  readonly attributes: Maybe<PageHome>;
+  readonly id: Maybe<Scalars['ID']['output']>;
+};
+
+export type PageHomeEntityResponse = {
+  readonly __typename?: 'PageHomeEntityResponse';
+  readonly data: Maybe<PageHomeEntity>;
+};
+
+export type PageHomeInput = {
+  readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
+  readonly section_discount: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type PageHomeRelationResponseCollection = {
+  readonly __typename?: 'PageHomeRelationResponseCollection';
+  readonly data: ReadonlyArray<PageHomeEntity>;
+};
+
+export type PageShoe = {
+  readonly __typename?: 'PageShoe';
+  readonly createdAt: Maybe<Scalars['DateTime']['output']>;
+  readonly locale: Maybe<Scalars['String']['output']>;
+  readonly localizations: Maybe<PageShoeRelationResponseCollection>;
+  readonly publishedAt: Maybe<Scalars['DateTime']['output']>;
+  readonly section_discount: Maybe<SectionDiscountEntityResponse>;
+  readonly updatedAt: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PageShoeLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type PageShoeEntity = {
+  readonly __typename?: 'PageShoeEntity';
+  readonly attributes: Maybe<PageShoe>;
+  readonly id: Maybe<Scalars['ID']['output']>;
+};
+
+export type PageShoeEntityResponse = {
+  readonly __typename?: 'PageShoeEntityResponse';
+  readonly data: Maybe<PageShoeEntity>;
+};
+
+export type PageShoeInput = {
+  readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
+  readonly section_discount: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type PageShoeRelationResponseCollection = {
+  readonly __typename?: 'PageShoeRelationResponseCollection';
+  readonly data: ReadonlyArray<PageShoeEntity>;
 };
 
 export type Pagination = {
@@ -1189,10 +1333,14 @@ export type Query = {
   readonly linkList: Maybe<LinkListEntityResponse>;
   readonly linkLists: Maybe<LinkListEntityResponseCollection>;
   readonly me: Maybe<UsersPermissionsMe>;
+  readonly pageHome: Maybe<PageHomeEntityResponse>;
+  readonly pageShoe: Maybe<PageShoeEntityResponse>;
   readonly preHeader: Maybe<PreHeaderEntityResponse>;
   readonly sectionBanner: Maybe<SectionBannerEntityResponse>;
   readonly sectionDiscount: Maybe<SectionDiscountEntityResponse>;
+  readonly sectionDiscounts: Maybe<SectionDiscountEntityResponseCollection>;
   readonly sectionMembership: Maybe<SectionMembershipEntityResponse>;
+  readonly sectionShoe: Maybe<SectionShoeEntityResponse>;
   readonly sectionTrend: Maybe<SectionTrendEntityResponse>;
   readonly shoe: Maybe<ShoeEntityResponse>;
   readonly shoes: Maybe<ShoeEntityResponseCollection>;
@@ -1279,6 +1427,18 @@ export type QueryLinkListsArgs = {
 };
 
 
+export type QueryPageHomeArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryPageShoeArgs = {
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
 export type QueryPreHeaderArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationState?: InputMaybe<PublicationState>;
@@ -1292,12 +1452,27 @@ export type QuerySectionBannerArgs = {
 
 
 export type QuerySectionDiscountArgs = {
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type QuerySectionDiscountsArgs = {
+  filters: InputMaybe<SectionDiscountFiltersInput>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySectionMembershipArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationState?: InputMaybe<PublicationState>;
 };
 
 
-export type QuerySectionMembershipArgs = {
+export type QuerySectionShoeArgs = {
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationState?: InputMaybe<PublicationState>;
 };
@@ -1446,7 +1621,10 @@ export type SectionDiscountItemsArgs = {
 
 
 export type SectionDiscountLocalizationsArgs = {
+  filters: InputMaybe<SectionDiscountFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type SectionDiscountEntity = {
@@ -1458,6 +1636,25 @@ export type SectionDiscountEntity = {
 export type SectionDiscountEntityResponse = {
   readonly __typename?: 'SectionDiscountEntityResponse';
   readonly data: Maybe<SectionDiscountEntity>;
+};
+
+export type SectionDiscountEntityResponseCollection = {
+  readonly __typename?: 'SectionDiscountEntityResponseCollection';
+  readonly data: ReadonlyArray<SectionDiscountEntity>;
+  readonly meta: ResponseCollectionMeta;
+};
+
+export type SectionDiscountFiltersInput = {
+  readonly and: InputMaybe<ReadonlyArray<InputMaybe<SectionDiscountFiltersInput>>>;
+  readonly createdAt: InputMaybe<DateTimeFilterInput>;
+  readonly id: InputMaybe<IdFilterInput>;
+  readonly items: InputMaybe<ComponentUiDiscountCardFiltersInput>;
+  readonly locale: InputMaybe<StringFilterInput>;
+  readonly localizations: InputMaybe<SectionDiscountFiltersInput>;
+  readonly not: InputMaybe<SectionDiscountFiltersInput>;
+  readonly or: InputMaybe<ReadonlyArray<InputMaybe<SectionDiscountFiltersInput>>>;
+  readonly publishedAt: InputMaybe<DateTimeFilterInput>;
+  readonly updatedAt: InputMaybe<DateTimeFilterInput>;
 };
 
 export type SectionDiscountInput = {
@@ -1515,6 +1712,50 @@ export type SectionMembershipRelationResponseCollection = {
   readonly data: ReadonlyArray<SectionMembershipEntity>;
 };
 
+export type SectionShoe = {
+  readonly __typename?: 'SectionShoe';
+  readonly addToBagButton: Maybe<ComponentUiLink>;
+  readonly createdAt: Maybe<Scalars['DateTime']['output']>;
+  readonly detailsButton: Maybe<ComponentUiLink>;
+  readonly favoriteButton: Maybe<ComponentUiLink>;
+  readonly locale: Maybe<Scalars['String']['output']>;
+  readonly localizations: Maybe<SectionShoeRelationResponseCollection>;
+  readonly publishedAt: Maybe<Scalars['DateTime']['output']>;
+  readonly shoe: Maybe<ShoeEntityResponse>;
+  readonly title: Scalars['String']['output'];
+  readonly updatedAt: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type SectionShoeLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type SectionShoeEntity = {
+  readonly __typename?: 'SectionShoeEntity';
+  readonly attributes: Maybe<SectionShoe>;
+  readonly id: Maybe<Scalars['ID']['output']>;
+};
+
+export type SectionShoeEntityResponse = {
+  readonly __typename?: 'SectionShoeEntityResponse';
+  readonly data: Maybe<SectionShoeEntity>;
+};
+
+export type SectionShoeInput = {
+  readonly addToBagButton: InputMaybe<ComponentUiLinkInput>;
+  readonly detailsButton: InputMaybe<ComponentUiLinkInput>;
+  readonly favoriteButton: InputMaybe<ComponentUiLinkInput>;
+  readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
+  readonly shoe: InputMaybe<Scalars['ID']['input']>;
+  readonly title: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SectionShoeRelationResponseCollection = {
+  readonly __typename?: 'SectionShoeRelationResponseCollection';
+  readonly data: ReadonlyArray<SectionShoeEntity>;
+};
+
 export type SectionTrend = {
   readonly __typename?: 'SectionTrend';
   readonly createdAt: Maybe<Scalars['DateTime']['output']>;
@@ -1570,7 +1811,7 @@ export type Shoe = {
   readonly locale: Maybe<Scalars['String']['output']>;
   readonly localizations: Maybe<ShoeRelationResponseCollection>;
   readonly name: Scalars['String']['output'];
-  readonly options: ComponentEntityShoeOption;
+  readonly options: ReadonlyArray<Maybe<ComponentEntityShoeOption>>;
   readonly price: Scalars['Float']['output'];
   readonly publishedAt: Maybe<Scalars['DateTime']['output']>;
   readonly type: Enum_Shoe_Type;
@@ -1582,6 +1823,13 @@ export type ShoeLocalizationsArgs = {
   filters: InputMaybe<ShoeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ShoeOptionsArgs = {
+  filters: InputMaybe<ComponentEntityShoeOptionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1626,7 +1874,7 @@ export type ShoeInput = {
   readonly description: InputMaybe<Scalars['String']['input']>;
   readonly details: InputMaybe<Scalars['String']['input']>;
   readonly name: InputMaybe<Scalars['String']['input']>;
-  readonly options: InputMaybe<ComponentEntityShoeOptionInput>;
+  readonly options: InputMaybe<ReadonlyArray<InputMaybe<ComponentEntityShoeOptionInput>>>;
   readonly price: InputMaybe<Scalars['Float']['input']>;
   readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
   readonly type: InputMaybe<Enum_Shoe_Type>;
@@ -2037,7 +2285,9 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type HeaderLinksListFragmentFragment = { readonly __typename?: 'LinkList', readonly title: string, readonly links: ReadonlyArray<{ readonly __typename?: 'ComponentElementsLinkItem', readonly id: string, readonly title: string, readonly link: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> }> };
 
-export type ShoeFragmentFragment = { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: { readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string } }> } } } }> };
+export type ShoeFragmentFragment = { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } }> } }> };
+
+export type ShoeOptionsFragment = { readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } };
 
 export type CardFragmentFragment = { readonly __typename?: 'ComponentUiFigure', readonly id: string, readonly caption: string, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }>, readonly image: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly url: string, readonly previewUrl: string } } } };
 
@@ -2085,6 +2335,20 @@ export type GetLocaleQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLocaleQuery = { readonly __typename?: 'Query', readonly i18NLocales: { readonly __typename?: 'I18NLocaleEntityResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'I18NLocaleEntity', readonly id: string, readonly attributes: { readonly __typename?: 'I18NLocale', readonly name: string, readonly code: string } }> } };
 
+export type GetPageHomeQueryVariables = Exact<{
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetPageHomeQuery = { readonly __typename?: 'Query', readonly pageHome: { readonly __typename?: 'PageHomeEntityResponse', readonly data: { readonly __typename?: 'PageHomeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageHome', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } } } } } };
+
+export type GetPageShoeQueryVariables = Exact<{
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetPageShoeQuery = { readonly __typename?: 'Query', readonly pageShoe: { readonly __typename?: 'PageShoeEntityResponse', readonly data: { readonly __typename?: 'PageShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageShoe', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } } } } } };
+
 export type GetPreHeaderQueryVariables = Exact<{
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
@@ -2100,6 +2364,7 @@ export type GetSectionBannerQueryVariables = Exact<{
 export type GetSectionBannerQuery = { readonly __typename?: 'Query', readonly sectionBanner: { readonly __typename?: 'SectionBannerEntityResponse', readonly data: { readonly __typename?: 'SectionBannerEntity', readonly attributes: { readonly __typename?: 'SectionBanner', readonly sectionTitle: string, readonly preSectionTitle: string, readonly subSectionTitle: string, readonly video: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly alternativeText: string, readonly caption: string, readonly width: number, readonly height: number, readonly formats: any, readonly hash: string, readonly ext: string, readonly mime: string, readonly size: number, readonly url: string, readonly previewUrl: string, readonly provider: string, readonly provider_metadata: any } } }, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> } } } };
 
 export type GetSectionDiscountQueryVariables = Exact<{
+  id: InputMaybe<Scalars['ID']['input']>;
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
 
@@ -2113,12 +2378,27 @@ export type GetSectionMembershipQueryVariables = Exact<{
 
 export type GetSectionMembershipQuery = { readonly __typename?: 'Query', readonly sectionMembership: { readonly __typename?: 'SectionMembershipEntityResponse', readonly data: { readonly __typename?: 'SectionMembershipEntity', readonly attributes: { readonly __typename?: 'SectionMembership', readonly title: string, readonly card: ReadonlyArray<{ readonly __typename?: 'ComponentUiFigure', readonly id: string, readonly caption: string, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }>, readonly image: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly url: string, readonly previewUrl: string } } } }> } } } };
 
+export type GetSectionShoeQueryVariables = Exact<{
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetSectionShoeQuery = { readonly __typename?: 'Query', readonly sectionShoe: { readonly __typename?: 'SectionShoeEntityResponse', readonly data: { readonly __typename?: 'SectionShoeEntity', readonly attributes: { readonly __typename?: 'SectionShoe', readonly title: string, readonly addToBagButton: { readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }, readonly favoriteButton: { readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }, readonly detailsButton: { readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string } } } } };
+
 export type GetSectionTrendQueryVariables = Exact<{
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
 
 
-export type GetSectionTrendQuery = { readonly __typename?: 'Query', readonly sectionTrend: { readonly __typename?: 'SectionTrendEntityResponse', readonly data: { readonly __typename?: 'SectionTrendEntity', readonly attributes: { readonly __typename?: 'SectionTrend', readonly sectionTitle: string, readonly shoes: { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: { readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string } }> } } } }> } } } } };
+export type GetSectionTrendQuery = { readonly __typename?: 'Query', readonly sectionTrend: { readonly __typename?: 'SectionTrendEntityResponse', readonly data: { readonly __typename?: 'SectionTrendEntity', readonly attributes: { readonly __typename?: 'SectionTrend', readonly sectionTitle: string, readonly shoes: { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } }> } }> } } } } };
+
+export type GetShoeQueryVariables = Exact<{
+  id: InputMaybe<Scalars['ID']['input']>;
+  locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetShoeQuery = { readonly __typename?: 'Query', readonly shoe: { readonly __typename?: 'ShoeEntityResponse', readonly data: { readonly __typename?: 'ShoeEntity', readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly name: string, readonly caption: string, readonly previewUrl: string } }> } }> } } } };
 
 export const LinkFragmentFragmentDoc = gql`
     fragment LinkFragment on ComponentUiLink {
@@ -2144,6 +2424,21 @@ export const HeaderLinksListFragmentFragmentDoc = gql`
   }
 }
     ${LinkListFragmentFragmentDoc}`;
+export const ShoeOptionsFragmentDoc = gql`
+    fragment ShoeOptions on ComponentEntityShoeOption {
+  id
+  medias {
+    data {
+      id
+      attributes {
+        url
+        caption
+      }
+    }
+  }
+  color
+}
+    `;
 export const ShoeFragmentFragmentDoc = gql`
     fragment ShoeFragment on ShoeRelationResponseCollection {
   data {
@@ -2155,21 +2450,13 @@ export const ShoeFragmentFragmentDoc = gql`
       details
       price
       options {
-        id
-        medias {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-        color
+        ...ShoeOptions
       }
       type
     }
   }
 }
-    `;
+    ${ShoeOptionsFragmentDoc}`;
 export const LayoutFooterAttributesFragmentFragmentDoc = gql`
     fragment LayoutFooterAttributesFragment on LayoutFooter {
   title
@@ -2321,6 +2608,52 @@ export const GetLocaleDocument = gql`
   }
 }
     `;
+export const GetPageHomeDocument = gql`
+    query GetPageHome($locale: I18NLocaleCode) {
+  pageHome(locale: $locale) {
+    data {
+      id
+      attributes {
+        section_discount {
+          data {
+            id
+            attributes {
+              items {
+                id
+                title
+                description2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetPageShoeDocument = gql`
+    query GetPageShoe($locale: I18NLocaleCode) {
+  pageShoe(locale: $locale) {
+    data {
+      id
+      attributes {
+        section_discount {
+          data {
+            id
+            attributes {
+              items {
+                id
+                title
+                description2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 export const GetPreHeaderDocument = gql`
     query GetPreHeader($locale: I18NLocaleCode) {
   preHeader(locale: $locale) {
@@ -2344,8 +2677,8 @@ export const GetSectionBannerDocument = gql`
 }
     ${SectionBannerAttributesFragmentFragmentDoc}`;
 export const GetSectionDiscountDocument = gql`
-    query GetSectionDiscount($locale: I18NLocaleCode) {
-  sectionDiscount(locale: $locale) {
+    query GetSectionDiscount($id: ID, $locale: I18NLocaleCode) {
+  sectionDiscount(id: $id, locale: $locale) {
     data {
       attributes {
         items {
@@ -2367,6 +2700,26 @@ export const GetSectionMembershipDocument = gql`
   }
 }
     ${SectionMembershipAttributesFragmentDoc}`;
+export const GetSectionShoeDocument = gql`
+    query GetSectionShoe($locale: I18NLocaleCode) {
+  sectionShoe(locale: $locale) {
+    data {
+      attributes {
+        title
+        addToBagButton {
+          ...LinkFragment
+        }
+        favoriteButton {
+          ...LinkFragment
+        }
+        detailsButton {
+          ...LinkFragment
+        }
+      }
+    }
+  }
+}
+    ${LinkFragmentFragmentDoc}`;
 export const GetSectionTrendDocument = gql`
     query GetSectionTrend($locale: I18NLocaleCode) {
   sectionTrend(locale: $locale) {
@@ -2381,6 +2734,36 @@ export const GetSectionTrendDocument = gql`
   }
 }
     ${ShoeFragmentFragmentDoc}`;
+export const GetShoeDocument = gql`
+    query GetShoe($id: ID, $locale: I18NLocaleCode) {
+  shoe(id: $id, locale: $locale) {
+    data {
+      attributes {
+        name
+        description
+        content
+        details
+        price
+        options {
+          id
+          medias {
+            data {
+              attributes {
+                url
+                name
+                caption
+                previewUrl
+              }
+            }
+          }
+          color
+        }
+        type
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -2401,6 +2784,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     GetLocale(variables?: GetLocaleQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetLocaleQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetLocaleQuery>(GetLocaleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetLocale', 'query', variables);
     },
+    GetPageHome(variables?: GetPageHomeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetPageHomeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPageHomeQuery>(GetPageHomeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPageHome', 'query', variables);
+    },
+    GetPageShoe(variables?: GetPageShoeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetPageShoeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPageShoeQuery>(GetPageShoeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPageShoe', 'query', variables);
+    },
     GetPreHeader(variables?: GetPreHeaderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetPreHeaderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPreHeaderQuery>(GetPreHeaderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPreHeader', 'query', variables);
     },
@@ -2413,8 +2802,14 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     GetSectionMembership(variables?: GetSectionMembershipQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSectionMembershipQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSectionMembershipQuery>(GetSectionMembershipDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSectionMembership', 'query', variables);
     },
+    GetSectionShoe(variables?: GetSectionShoeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSectionShoeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSectionShoeQuery>(GetSectionShoeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSectionShoe', 'query', variables);
+    },
     GetSectionTrend(variables?: GetSectionTrendQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSectionTrendQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSectionTrendQuery>(GetSectionTrendDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSectionTrend', 'query', variables);
+    },
+    GetShoe(variables?: GetShoeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetShoeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetShoeQuery>(GetShoeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetShoe', 'query', variables);
     }
   };
 }

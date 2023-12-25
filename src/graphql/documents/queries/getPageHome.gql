@@ -1,0 +1,21 @@
+query GetPageHome($locale: I18NLocaleCode) {
+  pageHome(locale: $locale) {
+    data {
+      id
+      attributes {
+        section_discount {
+          data {
+            id
+            attributes {
+              items {
+                id
+                title
+                description2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

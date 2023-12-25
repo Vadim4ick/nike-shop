@@ -1,3 +1,4 @@
+export { Gallery } from "./gallery/Gallery";
 export { Figure } from "./figure/Figure";
 export { ArrowButton } from "./buttons/ArrowButton/ArrowButton";
 export { Button } from "./buttons/Button/Button";

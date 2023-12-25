@@ -61,7 +61,7 @@ export default async function RootLayout({
 
         {layoutSubFooters.data && <SubFooter data={layoutSubFooters.data} />}
 
-        {layoutFooter && <Footer data={layoutFooter.data.attributes} />}
+        {layoutFooter.data && <Footer data={layoutFooter.data.attributes} />}
       </body>
     </html>
   );

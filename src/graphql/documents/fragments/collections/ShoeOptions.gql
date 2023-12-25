@@ -1,0 +1,13 @@
+fragment ShoeOptions on ComponentEntityShoeOption {
+  id
+  medias {
+    data {
+      id
+      attributes {
+        url
+        caption
+      }
+    }
+  }
+  color
+}

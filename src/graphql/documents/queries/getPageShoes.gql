@@ -1,0 +1,21 @@
+query GetPageShoe($locale: I18NLocaleCode) {
+  pageShoe(locale: $locale) {
+    data {
+      id
+      attributes {
+        section_discount {
+          data {
+            id
+            attributes {
+              items {
+                id
+                title
+                description2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

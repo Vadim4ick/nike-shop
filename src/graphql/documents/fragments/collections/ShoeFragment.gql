@@ -8,15 +8,7 @@ fragment ShoeFragment on ShoeRelationResponseCollection {
       details
       price
       options {
-        id
-        medias {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-        color
+        ...ShoeOptions
       }
       type
     }
