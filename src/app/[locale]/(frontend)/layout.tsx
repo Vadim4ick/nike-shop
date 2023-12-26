@@ -50,19 +50,21 @@ export default async function RootLayout({
   ) as Languages[];
 
   return (
-    <html lang={params.locale}>
-      <body>
-        {preHeader.data && (
-          <PreHeader preHeader={preHeader.data} localeCodes={localeCodes} />
-        )}
-        {linkLists.data && <Header linkLists={linkLists.data} />}
+    // <html lang={params.locale}>
+    //   <body>
+    <>
+      {preHeader.data && (
+        <PreHeader preHeader={preHeader.data} localeCodes={localeCodes} />
+      )}
+      {linkLists.data && <Header linkLists={linkLists.data} />}
 
-        <main>{children}</main>
+      <main>{children}</main>
 
-        {layoutSubFooters.data && <SubFooter data={layoutSubFooters.data} />}
+      {layoutSubFooters.data && <SubFooter data={layoutSubFooters.data} />}
 
-        {layoutFooter.data && <Footer data={layoutFooter.data.attributes} />}
-      </body>
-    </html>
+      {layoutFooter.data && <Footer data={layoutFooter.data.attributes} />}
+    </>
+    //   </body>
+    // </html>
   );
 }

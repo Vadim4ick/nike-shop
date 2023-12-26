@@ -3,6 +3,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import type { ImageProps } from "next/image";
 import React from "react";
+import "./Gallery.css";
+import InnerImageZoom, { InnerImageZoomProps } from "react-inner-image-zoom";
 
 export interface GalleryProps extends ReactTagProps<"figure"> {
   /**
@@ -35,6 +37,14 @@ export const Gallery: React.FC<GalleryProps> = ({ images }) => {
     setActiveImageIndex(index);
   };
 
+  // Явно указываем типы для свойств
+  const innerImageZoomProps: InnerImageZoomProps = {
+    zoomType: "hover",
+    className: "absolute w-full h-full object-cover",
+    src: String(images[activeImageIndex].src),
+    zoomSrc: String(images[activeImageIndex].src),
+  };
+
   return (
     <div className="flex gap-[1rem]" data-testid={GALLERY_TEST_IDS.CONTAINER}>
       <div className="flex flex-col gap-[1rem]">
@@ -55,12 +65,14 @@ export const Gallery: React.FC<GalleryProps> = ({ images }) => {
                 }
               )}
             />
-            <Image fill className="rounded-[0.5rem] object-fill" {...image} />
+            <Image fill className="rounded-[0.5rem] object-cover" {...image} />
           </div>
         ))}
       </div>
       <div className="relative h-[40rem] w-[30rem] rounded-[0.5rem] object-fill">
-        <Image className="object-cover" fill {...images[activeImageIndex]} />
+        {/* <Image fill className="object-cover" {...images[activeImageIndex]} /> */}
+
+        <InnerImageZoom {...innerImageZoomProps} />
 
         <div className="absolute bottom-4 right-4 flex gap-[0.5rem]">
           <button

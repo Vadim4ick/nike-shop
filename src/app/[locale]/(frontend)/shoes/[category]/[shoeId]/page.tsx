@@ -1,5 +1,6 @@
 import { DiscountBanner } from "@/components/sections/DiscountBanner/DiscountBanner";
 import { ShoeComponent } from "@/components/sections/Shoe/Shoe";
+import { Trend } from "@/components/sections/Trend/Trend";
 import { gql } from "@/graphql/client";
 import { Languages } from "@/shared/i18n/types";
 import { notFound } from "next/navigation";
@@ -36,6 +37,10 @@ export default async function Shoe(props: ShoeProps) {
     locale: locale,
   });
 
+  const { sectionTrend } = await gql.GetSectionTrend({
+    locale,
+  });
+
   return (
     <>
       {sectionDiscount.data && (
@@ -47,6 +52,8 @@ export default async function Shoe(props: ShoeProps) {
           data={{ shoe: shoe.data.attributes, ...sectionShoe.data.attributes }}
         />
       )}
+
+      {sectionTrend.data && <Trend data={sectionTrend.data.attributes} />}
     </>
   );
 }

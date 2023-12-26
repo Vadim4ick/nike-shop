@@ -17,64 +17,6 @@ interface ShoeProps {
   data: ShoeComponentData;
 }
 
-// const data = {
-//   shoe: {
-//     name: "Example Shoe",
-//     type: {
-//       data: {
-//         attributes: {
-//           name: "running_shoes",
-//         },
-//       },
-//     },
-//     price: "$99.99",
-//     options: [
-//       {
-//         medias: {
-//           data: [
-//             {
-//               attributes: {
-//                 caption: "Image 1",
-//                 url: "/images/shoe1.jpg",
-//                 previewUrl: "/images/shoe1-preview.jpg",
-//               },
-//             },
-//           ],
-//         },
-//       },
-//       {
-//         medias: {
-//           data: [
-//             {
-//               attributes: {
-//                 caption: "Image 2",
-//                 url: "/images/shoe2.jpg",
-//                 previewUrl: "/images/shoe2-preview.jpg",
-//               },
-//             },
-//           ],
-//         },
-//       },
-//     ],
-//     description: `
-//       This is an example shoe description. It can contain multiple paragraphs and lists:
-
-//       - Feature 1
-//       - Feature 2
-//       - Feature 3
-//     `,
-//   },
-//   addToBagButton: {
-//     label: "Add to Bag",
-//   },
-//   favoriteButton: {
-//     label: "Add to Favorites",
-//   },
-//   detailsButton: {
-//     label: "View Details",
-//   },
-// };
-
 export const ShoeComponent = (props: ShoeProps) => {
   const { data } = props;
   const [selectedOption, setSelectedOption] = React.useState(
