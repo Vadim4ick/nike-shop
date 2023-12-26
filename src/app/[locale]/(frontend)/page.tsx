@@ -46,7 +46,9 @@ export default async function Index({
         <Banner sectionBanner={sectionBanner.data.attributes} />
       )}
 
-      {sectionTrend.data && <Trend data={sectionTrend.data.attributes} />}
+      {sectionTrend.data && (
+        <Trend data={sectionTrend.data.attributes} locale={params.locale} />
+      )}
 
       {sectionMembership.data && (
         <Membership data={sectionMembership.data.attributes} />

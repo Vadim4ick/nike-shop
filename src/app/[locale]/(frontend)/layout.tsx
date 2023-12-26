@@ -12,6 +12,7 @@ import { gql } from "@/graphql/client";
 import "@/shared/assets/styles/index.css";
 import { SubFooter } from "./_layouts/SubFooter";
 import { Footer } from "./_layouts/Footer";
+import { Loader } from "@/shared/ui";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -50,8 +51,6 @@ export default async function RootLayout({
   ) as Languages[];
 
   return (
-    // <html lang={params.locale}>
-    //   <body>
     <>
       {preHeader.data && (
         <PreHeader preHeader={preHeader.data} localeCodes={localeCodes} />
@@ -64,7 +63,5 @@ export default async function RootLayout({
 
       {layoutFooter.data && <Footer data={layoutFooter.data.attributes} />}
     </>
-    //   </body>
-    // </html>
   );
 }

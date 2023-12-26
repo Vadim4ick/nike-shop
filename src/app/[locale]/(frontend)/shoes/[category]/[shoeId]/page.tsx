@@ -53,7 +53,9 @@ export default async function Shoe(props: ShoeProps) {
         />
       )}
 
-      {sectionTrend.data && <Trend data={sectionTrend.data.attributes} />}
+      {sectionTrend.data && (
+        <Trend data={sectionTrend.data.attributes} locale={locale} />
+      )}
     </>
   );
 }

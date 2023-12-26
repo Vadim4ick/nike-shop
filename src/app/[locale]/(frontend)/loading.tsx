@@ -1,4 +1,6 @@
+import { Loader } from "@/shared/ui";
+
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
-  return <div>Load...</div>;
+  return <Loader />;
 }

@@ -1,3 +1,4 @@
+import { Languages } from "@/shared/i18n/types";
 import { ArrowButton, ItemCard, Typography } from "@/shared/ui";
 import Link from "next/link";
 import React from "react";
@@ -14,10 +15,13 @@ type CarouselItem = {
 interface CarouselProps {
   title: string;
   items: CarouselItem[];
+  locale: Languages;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
+export const Carousel: React.FC<CarouselProps> = ({ title, items, locale }) => {
   const [activeNumber, setActiveNumber] = React.useState(1);
+  const [isAnimating, setAnimating] = React.useState(false);
+
   const scrollRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
@@ -57,26 +61,52 @@ export const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
   }, [scrollRef, activeNumber, items.length]);
 
   const onNextClick = () => {
-    const nextActiveNumber = activeNumber + 1;
+    if (!isAnimating) {
+      setAnimating(true);
 
-    scrollRef.current?.scrollTo({
-      left:
-        scrollRef.current.scrollLeft +
-        scrollRef.current.scrollWidth / items.length,
-      behavior: "smooth",
-    });
-    setActiveNumber(nextActiveNumber);
+      const nextActiveNumber = activeNumber + 1;
+
+      scrollRef.current?.scrollTo({
+        left:
+          scrollRef.current.scrollLeft +
+          scrollRef.current.scrollWidth / items.length,
+        behavior: "smooth",
+      });
+      setActiveNumber(nextActiveNumber);
+
+      // После завершения анимации разблокируйте кнопку
+      const timeoutId = setTimeout(() => {
+        setAnimating(false);
+      }, 500); // Подставьте здесь время анимации в миллисекундах
+
+      // Возвращаем функцию, которая будет вызвана при размонтировании компонента
+      return () => clearTimeout(timeoutId);
+    }
   };
 
   const onBackClick = () => {
-    const prevActiveNumber = activeNumber - 1;
-    scrollRef.current?.scrollTo({
-      left:
-        scrollRef.current.scrollLeft -
-        scrollRef.current.scrollWidth / items.length,
-      behavior: "smooth",
-    });
-    setActiveNumber(prevActiveNumber);
+    if (!isAnimating) {
+      setAnimating(true);
+
+      const prevActiveNumber = activeNumber - 1;
+
+      scrollRef.current?.scrollTo({
+        left:
+          scrollRef.current.scrollLeft -
+          scrollRef.current.scrollWidth / items.length,
+        behavior: "smooth",
+      });
+
+      setActiveNumber(prevActiveNumber);
+
+      // После завершения анимации разблокируйте кнопку
+      const timeoutId = setTimeout(() => {
+        setAnimating(false);
+      }, 500); // Подставьте здесь время анимации в миллисекундах
+
+      // Возвращаем функцию, которая будет вызвана при размонтировании компонента
+      return () => clearTimeout(timeoutId);
+    }
   };
 
   const isBackDisabled = activeNumber === 1;
@@ -106,7 +136,10 @@ export const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
       >
         {items.map((item) => {
           return (
-            <Link key={item.id} href={`/ru/shoes/${item.category}/${item.id}`}>
+            <Link
+              key={item.id}
+              href={`/${locale}/shoes/${item.category}/${item.id}`}
+            >
               <li className="snap-start">
                 <ItemCard
                   {...item}

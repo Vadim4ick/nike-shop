@@ -1,3 +1,4 @@
+export { Loader } from "./Loader/Loader";
 export { Gallery } from "./gallery/Gallery";
 export { Figure } from "./figure/Figure";
 export { ArrowButton } from "./buttons/ArrowButton/ArrowButton";

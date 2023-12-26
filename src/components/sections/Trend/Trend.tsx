@@ -3,15 +3,17 @@
 import { Carousel } from "@/components/Carousel/Carousel";
 import { GetSectionTrendQuery } from "@/graphql/__generated__";
 import { getFileUrl } from "@/shared/helpers/getFileUrl";
+import { Languages } from "@/shared/i18n/types";
 
 type SectionTrendData =
   GetSectionTrendQuery["sectionTrend"]["data"]["attributes"];
 
 export interface TrendProps {
   data: SectionTrendData;
+  locale: Languages;
 }
 
-export const Trend: React.FC<TrendProps> = ({ data }) => {
+export const Trend: React.FC<TrendProps> = ({ data, locale }) => {
   return (
     <section className="scroll_container my-[3rem] flex flex-col items-center justify-between">
       <Carousel
@@ -29,6 +31,7 @@ export const Trend: React.FC<TrendProps> = ({ data }) => {
             category: "test",
           };
         })}
+        locale={locale}
       />
     </section>
   );
