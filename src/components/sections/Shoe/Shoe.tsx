@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { LikeIcon } from "@/ui/icons";
@@ -17,26 +17,44 @@ interface ShoeProps {
   data: ShoeComponentData;
 }
 
-export const ShoeComponent = (props: ShoeProps) => {
+// eslint-disable-next-line react/display-name
+export const ShoeComponent = memo((props: ShoeProps) => {
   const { data } = props;
-  const [selectedOption, setSelectedOption] = React.useState(
-    data.shoe.options[0]
-  );
+  // const [selectedOption, setSelectedOption] = React.useState(
+  //   data.shoe.options[0]
+  // );
+  const [activeImageIndex, setActiveImageIndex] = React.useState(0);
 
   return (
     <section className="my-[3rem] flex items-center justify-center">
       <div className="flex w-full max-w-[80rem] ">
         <div className="sticky top-[2rem] flex h-fit w-[60%] justify-center">
           <Gallery
-            images={selectedOption.medias.data.map((element) => {
+            activeImageIndex={activeImageIndex}
+            setActiveImageIndex={setActiveImageIndex}
+            images={data.shoe.options.map((element) => {
               return {
-                alt: element.attributes.name,
-                src: getFileUrl(element.attributes.url),
+                alt: element.medias.data.attributes.name,
+                src: getFileUrl(element.medias.data.attributes.url),
                 placeholder: "blur",
-                blurDataURL: getFileUrl(element.attributes.previewUrl),
+                blurDataURL: getFileUrl(
+                  element.medias.data.attributes.previewUrl
+                ),
               };
             })}
           />
+          {/* <Gallery
+            images={data.shoe.options.map((element) => {
+              return {
+                alt: element.medias.data.attributes.name,
+                src: getFileUrl(element.medias.data.attributes.url),
+                placeholder: "blur",
+                blurDataURL: getFileUrl(
+                  element.medias.data.attributes.previewUrl
+                ),
+              };
+            })}
+          /> */}
         </div>
         <div className="flex w-[30%] flex-col p-[1rem]">
           <div className="flex flex-col gap-[0.5rem]">
@@ -52,28 +70,17 @@ export const ShoeComponent = (props: ShoeProps) => {
               {data.shoe.price}
             </Typography>
           </div>
-          <div className="flex gap-[0.5rem]">
-            {data.shoe.options.length > 1 &&
-              data.shoe.options.map((option, index) => (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+          <div className="flex gap-[0.5rem] bg-gray-200 p-4">
+            {data.shoe.options.map((el, i) => {
+              return (
                 <div
-                  key={index}
-                  className="relative h-[4.5rem] w-[4.2rem] cursor-pointer rounded-md hover:border-[0.1rem] hover:border-black-100"
-                  role="menuitem"
-                  tabIndex={0}
-                  onClick={() => setSelectedOption(option)}
-                >
-                  <Image
-                    fill
-                    alt={option.medias.data[0].attributes.name}
-                    blurDataURL={getFileUrl(
-                      option.medias.data[0].attributes.previewUrl
-                    )}
-                    className="rounded-md object-cover"
-                    src={getFileUrl(option.medias.data[0].attributes.url)}
-                  />
-                </div>
-              ))}
+                  onClick={() => setActiveImageIndex(i)}
+                  style={{ backgroundColor: el.color }}
+                  className={`w-7 h-7 border-black-100 border-[2px] cursor-pointer rounded-full`}
+                  key={el.id}
+                />
+              );
+            })}
           </div>
           <div className="mt-[1rem]">
             <ReactMarkdown
@@ -133,4 +140,4 @@ export const ShoeComponent = (props: ShoeProps) => {
       </div>
     </section>
   );
-};
+});

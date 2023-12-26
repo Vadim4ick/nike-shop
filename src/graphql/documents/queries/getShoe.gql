@@ -11,10 +11,10 @@ query GetShoe($id: ID, $locale: I18NLocaleCode) {
           id
           medias {
             data {
+              id
               attributes {
                 url
                 name
-                caption
                 previewUrl
               }
             }
