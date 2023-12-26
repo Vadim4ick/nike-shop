@@ -26,7 +26,7 @@ export const Trend: React.FC<TrendProps> = ({ data, locale }) => {
             type: shoe.attributes.type,
 
             image: getFileUrl(
-              shoe.attributes.options[0].medias.data[0].attributes.url
+              shoe.attributes.options[0].medias.data.attributes.url
             ),
             category: "test",
           };

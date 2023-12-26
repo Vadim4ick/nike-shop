@@ -79,14 +79,7 @@ export type ComponentEntityShoeOption = {
   readonly __typename?: 'ComponentEntityShoeOption';
   readonly color: Scalars['String']['output'];
   readonly id: Scalars['ID']['output'];
-  readonly medias: UploadFileRelationResponseCollection;
-};
-
-
-export type ComponentEntityShoeOptionMediasArgs = {
-  filters: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
+  readonly medias: UploadFileEntityResponse;
 };
 
 export type ComponentEntityShoeOptionFiltersInput = {
@@ -99,7 +92,7 @@ export type ComponentEntityShoeOptionFiltersInput = {
 export type ComponentEntityShoeOptionInput = {
   readonly color: InputMaybe<Scalars['String']['input']>;
   readonly id: InputMaybe<Scalars['ID']['input']>;
-  readonly medias: InputMaybe<ReadonlyArray<InputMaybe<Scalars['ID']['input']>>>;
+  readonly medias: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type ComponentSharedMetaSocial = {
@@ -118,6 +111,14 @@ export type ComponentSharedMetaSocialFiltersInput = {
   readonly or: InputMaybe<ReadonlyArray<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
   readonly socialNetwork: InputMaybe<StringFilterInput>;
   readonly title: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedMetaSocialInput = {
+  readonly description: InputMaybe<Scalars['String']['input']>;
+  readonly id: InputMaybe<Scalars['ID']['input']>;
+  readonly image: InputMaybe<Scalars['ID']['input']>;
+  readonly socialNetwork: InputMaybe<Enum_Componentsharedmetasocial_Socialnetwork>;
+  readonly title: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentSharedSeo = {
@@ -139,6 +140,19 @@ export type ComponentSharedSeoMetaSocialArgs = {
   filters: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSharedSeoInput = {
+  readonly canonicalURL: InputMaybe<Scalars['String']['input']>;
+  readonly id: InputMaybe<Scalars['ID']['input']>;
+  readonly keywords: InputMaybe<Scalars['String']['input']>;
+  readonly metaDescription: InputMaybe<Scalars['String']['input']>;
+  readonly metaImage: InputMaybe<Scalars['ID']['input']>;
+  readonly metaRobots: InputMaybe<Scalars['String']['input']>;
+  readonly metaSocial: InputMaybe<ReadonlyArray<InputMaybe<ComponentSharedMetaSocialInput>>>;
+  readonly metaTitle: InputMaybe<Scalars['String']['input']>;
+  readonly metaViewport: InputMaybe<Scalars['String']['input']>;
+  readonly structuredData: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ComponentUiDiscountCard = {
@@ -1184,6 +1198,7 @@ export type MutationUploadArgs = {
 
 export type PageHome = {
   readonly __typename?: 'PageHome';
+  readonly SEO: Maybe<ComponentSharedSeo>;
   readonly createdAt: Maybe<Scalars['DateTime']['output']>;
   readonly locale: Maybe<Scalars['String']['output']>;
   readonly localizations: Maybe<PageHomeRelationResponseCollection>;
@@ -1209,6 +1224,7 @@ export type PageHomeEntityResponse = {
 };
 
 export type PageHomeInput = {
+  readonly SEO: InputMaybe<ComponentSharedSeoInput>;
   readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
   readonly section_discount: InputMaybe<Scalars['ID']['input']>;
 };
@@ -2285,9 +2301,9 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type HeaderLinksListFragmentFragment = { readonly __typename?: 'LinkList', readonly title: string, readonly links: ReadonlyArray<{ readonly __typename?: 'ComponentElementsLinkItem', readonly id: string, readonly title: string, readonly link: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }> }> };
 
-export type ShoeFragmentFragment = { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } }> } }> };
+export type ShoeFragmentFragment = { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } } } }> } }> };
 
-export type ShoeOptionsFragment = { readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } };
+export type ShoeOptionsFragment = { readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } } } };
 
 export type CardFragmentFragment = { readonly __typename?: 'ComponentUiFigure', readonly id: string, readonly caption: string, readonly linkButton: ReadonlyArray<{ readonly __typename?: 'ComponentUiLink', readonly id: string, readonly label: string, readonly href: string }>, readonly image: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly name: string, readonly url: string, readonly previewUrl: string } } } };
 
@@ -2390,7 +2406,7 @@ export type GetSectionTrendQueryVariables = Exact<{
 }>;
 
 
-export type GetSectionTrendQuery = { readonly __typename?: 'Query', readonly sectionTrend: { readonly __typename?: 'SectionTrendEntityResponse', readonly data: { readonly __typename?: 'SectionTrendEntity', readonly attributes: { readonly __typename?: 'SectionTrend', readonly sectionTitle: string, readonly shoes: { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } }> } }> } }> } } } } };
+export type GetSectionTrendQuery = { readonly __typename?: 'Query', readonly sectionTrend: { readonly __typename?: 'SectionTrendEntityResponse', readonly data: { readonly __typename?: 'SectionTrendEntity', readonly attributes: { readonly __typename?: 'SectionTrend', readonly sectionTitle: string, readonly shoes: { readonly __typename?: 'ShoeRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'ShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly caption: string } } } }> } }> } } } } };
 
 export type GetShoeQueryVariables = Exact<{
   id: InputMaybe<Scalars['ID']['input']>;
@@ -2398,7 +2414,7 @@ export type GetShoeQueryVariables = Exact<{
 }>;
 
 
-export type GetShoeQuery = { readonly __typename?: 'Query', readonly shoe: { readonly __typename?: 'ShoeEntityResponse', readonly data: { readonly __typename?: 'ShoeEntity', readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileRelationResponseCollection', readonly data: ReadonlyArray<{ readonly __typename?: 'UploadFileEntity', readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly name: string, readonly caption: string, readonly previewUrl: string } }> } }> } } } };
+export type GetShoeQuery = { readonly __typename?: 'Query', readonly shoe: { readonly __typename?: 'ShoeEntityResponse', readonly data: { readonly __typename?: 'ShoeEntity', readonly attributes: { readonly __typename?: 'Shoe', readonly name: string, readonly description: string, readonly content: string, readonly details: string, readonly price: number, readonly type: Enum_Shoe_Type, readonly options: ReadonlyArray<{ readonly __typename?: 'ComponentEntityShoeOption', readonly id: string, readonly color: string, readonly medias: { readonly __typename?: 'UploadFileEntityResponse', readonly data: { readonly __typename?: 'UploadFileEntity', readonly id: string, readonly attributes: { readonly __typename?: 'UploadFile', readonly url: string, readonly name: string, readonly previewUrl: string } } } }> } } } };
 
 export const LinkFragmentFragmentDoc = gql`
     fragment LinkFragment on ComponentUiLink {
@@ -2748,10 +2764,10 @@ export const GetShoeDocument = gql`
           id
           medias {
             data {
+              id
               attributes {
                 url
                 name
-                caption
                 previewUrl
               }
             }
