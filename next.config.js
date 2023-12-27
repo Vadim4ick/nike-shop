@@ -14,6 +14,7 @@ module.exports = withNextIntl({
   },
   env: {
     STRAPI_URL: "http://127.0.0.1:1337",
+    BASE_URL: "http://localhost:3000",
   },
 });
 

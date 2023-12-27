@@ -1,7 +1,7 @@
 import { Languages } from "@/shared/i18n/types";
 import { ArrowButton, ItemCard, Typography } from "@/shared/ui";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 type CarouselItem = {
   id: string;
@@ -21,6 +21,12 @@ interface CarouselProps {
 export const Carousel: React.FC<CarouselProps> = ({ title, items, locale }) => {
   const [activeNumber, setActiveNumber] = React.useState(1);
   const [isAnimating, setAnimating] = React.useState(false);
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+    });
+  }, []);
 
   const scrollRef = React.useRef<HTMLUListElement>(null);
 

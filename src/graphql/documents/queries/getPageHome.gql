@@ -15,6 +15,13 @@ query GetPageHome($locale: I18NLocaleCode) {
             }
           }
         }
+
+        SEO {
+          id
+          metaTitle
+          metaDescription
+          keywords
+        }
       }
     }
   }

@@ -3,8 +3,23 @@ import { DiscountBanner } from "@/components/sections/DiscountBanner/DiscountBan
 import { Membership } from "@/components/sections/Membership/Membership";
 import { Trend } from "@/components/sections/Trend/Trend";
 import { gql } from "@/graphql/client";
+import { PAGES } from "@/shared/const/pages";
 import { Languages } from "@/shared/i18n/types";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata() {
+  const seo = await fetch(
+    `${process.env.BASE_URL}/ru/api/metadata?page=${PAGES.HOME}`
+  ).then((res) => res.json());
+
+  const data = await seo;
+
+  if (data.status === "error") {
+    throw new Error(data.error.text);
+  }
+
+  return data.metadata;
+}
 
 export default async function Index({
   params,
