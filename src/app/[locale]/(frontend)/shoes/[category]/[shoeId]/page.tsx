@@ -2,6 +2,7 @@ import { DiscountBanner } from "@/components/sections/DiscountBanner/DiscountBan
 import { ShoeComponent } from "@/components/sections/Shoe/Shoe";
 import { Trend } from "@/components/sections/Trend/Trend";
 import { gql } from "@/graphql/client";
+import { PAGES } from "@/shared/const/pages";
 import { Languages } from "@/shared/i18n/types";
 import { notFound } from "next/navigation";
 
@@ -10,6 +11,20 @@ interface ShoeProps {
     locale: Languages;
     shoeId: string;
   };
+}
+
+export async function generateMetadata() {
+  const seo = await fetch(
+    `${process.env.BASE_URL}/ru/api/metadata?page=${PAGES.SHOES}`
+  ).then((res) => res.json());
+
+  const data = await seo;
+
+  if (data.status === "error") {
+    throw new Error(data.error.text);
+  }
+
+  return data.metadata;
 }
 
 export default async function Shoe(props: ShoeProps) {

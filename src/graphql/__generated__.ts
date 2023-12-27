@@ -1236,6 +1236,7 @@ export type PageHomeRelationResponseCollection = {
 
 export type PageShoe = {
   readonly __typename?: 'PageShoe';
+  readonly SEO: Maybe<ComponentSharedSeo>;
   readonly createdAt: Maybe<Scalars['DateTime']['output']>;
   readonly locale: Maybe<Scalars['String']['output']>;
   readonly localizations: Maybe<PageShoeRelationResponseCollection>;
@@ -1261,6 +1262,7 @@ export type PageShoeEntityResponse = {
 };
 
 export type PageShoeInput = {
+  readonly SEO: InputMaybe<ComponentSharedSeoInput>;
   readonly publishedAt: InputMaybe<Scalars['DateTime']['input']>;
   readonly section_discount: InputMaybe<Scalars['ID']['input']>;
 };
@@ -2356,14 +2358,14 @@ export type GetPageHomeQueryVariables = Exact<{
 }>;
 
 
-export type GetPageHomeQuery = { readonly __typename?: 'Query', readonly pageHome: { readonly __typename?: 'PageHomeEntityResponse', readonly data: { readonly __typename?: 'PageHomeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageHome', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } } } } } };
+export type GetPageHomeQuery = { readonly __typename?: 'Query', readonly pageHome: { readonly __typename?: 'PageHomeEntityResponse', readonly data: { readonly __typename?: 'PageHomeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageHome', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } }, readonly SEO: { readonly __typename?: 'ComponentSharedSeo', readonly id: string, readonly metaTitle: string, readonly metaDescription: string, readonly keywords: string } } } } };
 
 export type GetPageShoeQueryVariables = Exact<{
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
 
 
-export type GetPageShoeQuery = { readonly __typename?: 'Query', readonly pageShoe: { readonly __typename?: 'PageShoeEntityResponse', readonly data: { readonly __typename?: 'PageShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageShoe', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } } } } } };
+export type GetPageShoeQuery = { readonly __typename?: 'Query', readonly pageShoe: { readonly __typename?: 'PageShoeEntityResponse', readonly data: { readonly __typename?: 'PageShoeEntity', readonly id: string, readonly attributes: { readonly __typename?: 'PageShoe', readonly section_discount: { readonly __typename?: 'SectionDiscountEntityResponse', readonly data: { readonly __typename?: 'SectionDiscountEntity', readonly id: string, readonly attributes: { readonly __typename?: 'SectionDiscount', readonly items: ReadonlyArray<{ readonly __typename?: 'ComponentUiDiscountCard', readonly id: string, readonly title: string, readonly description2: string }> } } }, readonly SEO: { readonly __typename?: 'ComponentSharedSeo', readonly id: string, readonly metaTitle: string, readonly metaDescription: string, readonly keywords: string } } } } };
 
 export type GetPreHeaderQueryVariables = Exact<{
   locale: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -2642,6 +2644,12 @@ export const GetPageHomeDocument = gql`
             }
           }
         }
+        SEO {
+          id
+          metaTitle
+          metaDescription
+          keywords
+        }
       }
     }
   }
@@ -2664,6 +2672,12 @@ export const GetPageShoeDocument = gql`
               }
             }
           }
+        }
+        SEO {
+          id
+          metaTitle
+          metaDescription
+          keywords
         }
       }
     }

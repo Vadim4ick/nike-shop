@@ -15,6 +15,13 @@ query GetPageShoe($locale: I18NLocaleCode) {
             }
           }
         }
+
+        SEO {
+          id
+          metaTitle
+          metaDescription
+          keywords
+        }
       }
     }
   }
